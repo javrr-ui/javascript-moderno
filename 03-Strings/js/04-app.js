@@ -4,3 +4,7 @@ const producto = "                         monitor de 24 pulgadas        ";
 //console.log(producto)
 console.log(producto.trimStart());
 console.log(producto.trimEnd());
+
+
+//function chaining en javascript
+// console.log(producto.trimStart().trimEnd());
