@@ -9,3 +9,6 @@ const producto = {
 console.log(producto.precio);
 console.log(producto.nombre);
 console.log(producto.disponible);
+
+//otra manera de acceder a un valor de un objeto
+console.log(producto['nombre']);
