@@ -21,8 +21,6 @@ carrito.forEach( function(producto){
 
 
 //creando un nuevo arreglo con el metodo .map
-
-//productos que valen mas de 1000
 const productos2 = carrito.map( function(producto){
         return `El precio de ${producto.nombre} es ${producto.precio}`;
 })
