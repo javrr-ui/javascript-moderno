@@ -1,4 +1,5 @@
 // querySelector
+// retorna solo un elemento que cumpla con el selector y solo retorna el primero que encuentre
 
 const card = document.querySelector('.card');
 console.log(card);
