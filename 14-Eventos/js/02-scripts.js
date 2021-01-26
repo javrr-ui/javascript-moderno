@@ -23,3 +23,4 @@ nav.addEventListener("dblclick", () => {
 document.addEventListener("keyup", (e)=> {
     console.log(e.code);
 });
+
