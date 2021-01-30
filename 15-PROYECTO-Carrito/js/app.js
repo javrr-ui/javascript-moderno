@@ -14,6 +14,12 @@ function cargarEventListeners(){
     
     //elimina cursos cuando presionas la X
     carrito.addEventListener("click", eliminarCurso);
+
+    //vaciar el carrito
+    vaciarCarrito.addEventListener("click", () => {
+        articulosCarrito = [];
+        limpiarHTML();
+    });
 }
 
 function agregarCurso(e){
@@ -55,11 +61,11 @@ function leerDatosCurso(curso){
     console.log(infoCurso);
 
     //revisa si un elemento ya existe en el carrito
-    const existe = articulosCarrito.some( curso => infoCurso === infoCurso.id);
+    const existe = articulosCarrito.some( curso => curso.id === infoCurso.id);
     if(existe){
         //Actualizamos la cantidad
         const cursos = articulosCarrito.map( curso => {
-            if(infoCurso === infoCurso.id){
+            if(curso.id === infoCurso.id){
                 curso.cantidad++;
                 return curso; // Retorna el objeto actualizado
             }else{
