@@ -35,9 +35,27 @@ function leerDatosCurso(curso){
         cantidad: 1,
     }
     console.log(infoCurso);
+
+    //revisa si un elemento ya existe en el carrito
+    const existe = articulosCarrito.some( curso => infoCurso === infoCurso.id);
+    if(existe){
+        //Actualizamos la cantidad
+        const cursos = articulosCarrito.map( curso => {
+            if(infoCurso === infoCurso.id){
+                curso.cantidad++;
+                return curso; // Retorna el objeto actualizado
+            }else{
+                return curso; // Retorna los objetos que no son duplicados
+            }
+        });
+        articulosCarrito = [...cursos];
+
+    }else{
+        //agrega elementos al arreglo del carrito
+        articulosCarrito = [...articulosCarrito, infoCurso];
+    }
     
-    //agrega elementos al arreglo del carrito
-    articulosCarrito = [...articulosCarrito, infoCurso];
+    
     console.table(articulosCarrito);
     carritoHTML();
 }
