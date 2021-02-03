@@ -6,6 +6,7 @@ const formulario = document.querySelector("#enviar-mail");
 const email = document.querySelector("#email");
 const asunto = document.querySelector("#asunto");
 const mensaje = document.querySelector("#mensaje");
+const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 eventListeners()
 //eventListeners
@@ -23,7 +24,7 @@ function eventListeners(){
 
 //funciones
 function iniciarApp(){
-   // btnEnviar.disabled = true;
+    btnEnviar.disabled = true;
     btnEnviar.classList.add("cursor-not-allowed","opacity-50");
 }
 
@@ -36,8 +37,10 @@ function validarFormulario(e){
         
         //elimina los errores
         const error = document.querySelector("p.error");
-        error.remove();
-        
+        if(error){
+            error.remove();
+        }
+                
         e.target.classList.remove("border","border-red-500");
         e.target.classList.add("border","border-green-500");
         
@@ -48,15 +51,16 @@ function validarFormulario(e){
         //console.log("no hay algo");
         mostrarError("Todos los campos son obligatorios");
     }
-    console.log(e.target.type);
+    //console.log(e.target.type);
     if(e.target.type === "email"){
-        const er = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-       
+        
         const resultado = e.target.value.indexOf("@");
 
         if(er.test(e.target.value)){
             const error = document.querySelector("p.error");
-            error.remove();
+            if(error){
+                error.remove();
+            }
 
             e.target.classList.add("border","border-green-500");
             console.log("email valido");
@@ -66,7 +70,11 @@ function validarFormulario(e){
             console.log("email no valido")
             mostrarError("Email no válido");
         }
-
+    }
+    if(er.test(email.value) && asunto.value !=='' && mensaje.value !==''){
+        console.log("pasaste la validacion");
+        btnEnviar.disabled = false;
+        btnEnviar.classList.remove("cursor-not-allowed","opacity-50");
     }
 }
 
