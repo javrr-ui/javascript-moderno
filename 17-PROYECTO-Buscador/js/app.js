@@ -115,7 +115,7 @@ function llenarSelect() {
 
 //funcion que filtra en base a la busqueda
 function filtrarAuto() {
-    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas);
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtrarMinimo).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision);
 
     //console.log(resultado);
     mostrarAutos(resultado);
@@ -157,6 +157,15 @@ function filtrarPuertas(auto) {
     const { puertas } = datosBusqueda;
     if (puertas) {
         return auto.puertas === parseInt(puertas);
+    }
+    return auto;
+
+}
+
+function filtrarTransmision(auto) {
+    const { transmision } = datosBusqueda;
+    if (transmision) {
+        return auto.transmision === transmision;
     }
     return auto;
 
