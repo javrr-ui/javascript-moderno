@@ -20,8 +20,16 @@ function agregarTweet(e){
         return;
     }
 
-    console.log(tweet);
+    const tweetObj = {
+        id: Date.now(),
+        tweet
+    }
 
+    //Agrega tweets
+    tweets.push(tweetObj)
+    
+    console.log(tweets);
+    crearHTML();
 }
 
 
@@ -36,4 +44,19 @@ function mostrarError(error) {
     setTimeout(()=>{
         mensajeError.remove();
     },3000)
+}
+
+
+//Muestra un listado de los tweets
+function crearHTML(){
+    if(tweets.length){
+        tweets.forEach(tweet =>{
+            const li = document.createElement("li");
+            li.textContent = tweet.tweet;
+
+            
+            listaTweets.appendChild(li);
+
+        })
+    }
 }
