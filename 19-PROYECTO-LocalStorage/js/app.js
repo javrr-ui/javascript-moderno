@@ -30,6 +30,10 @@ function agregarTweet(e) {
 
     console.log(tweets);
     crearHTML();
+
+    //Reiniciar el formulario
+    formulario.reset();
+
 }
 
 
