@@ -16,10 +16,24 @@ function agregarTweet(e){
     const tweet = document.querySelector("#tweet").value;
     
     if(tweet ===""){
-        console.log("There cannot be empty strings!")
+        mostrarError("Textfield cannot be empty!");
         return;
     }
 
     console.log(tweet);
 
+}
+
+
+function mostrarError(error) {
+    const mensajeError = document.createElement("p");
+    mensajeError.textContent = error;
+    mensajeError.classList.add("error");
+
+    const contenido = document.querySelector("#contenido");
+    contenido.appendChild(mensajeError);
+
+    setTimeout(()=>{
+        mensajeError.remove();
+    },3000)
 }
