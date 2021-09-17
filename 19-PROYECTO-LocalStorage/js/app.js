@@ -4,18 +4,18 @@ let tweets = [];
 
 eventListeners();
 
-function eventListeners(){ 
+function eventListeners() {
     formulario.addEventListener("submit", agregarTweet);
 }
 
 
 
 
-function agregarTweet(e){
+function agregarTweet(e) {
     e.preventDefault();
     const tweet = document.querySelector("#tweet").value;
-    
-    if(tweet ===""){
+
+    if (tweet === "") {
         mostrarError("Textfield cannot be empty!");
         return;
     }
@@ -27,7 +27,7 @@ function agregarTweet(e){
 
     //Agrega tweets
     tweets.push(tweetObj)
-    
+
     console.log(tweets);
     crearHTML();
 }
@@ -41,22 +41,30 @@ function mostrarError(error) {
     const contenido = document.querySelector("#contenido");
     contenido.appendChild(mensajeError);
 
-    setTimeout(()=>{
+    setTimeout(() => {
         mensajeError.remove();
-    },3000)
+    }, 3000)
 }
 
 
 //Muestra un listado de los tweets
-function crearHTML(){
-    if(tweets.length){
-        tweets.forEach(tweet =>{
+function crearHTML() {
+    limpiarHTML();
+
+    if (tweets.length) {
+        tweets.forEach(tweet => {
             const li = document.createElement("li");
             li.textContent = tweet.tweet;
 
-            
+
             listaTweets.appendChild(li);
 
         })
+    }
+}
+
+function limpiarHTML() {
+    while (listaTweets.firstChild) {
+        listaTweets.removeChild(listaTweets.firstChild);
     }
 }
