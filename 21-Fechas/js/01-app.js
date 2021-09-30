@@ -16,3 +16,7 @@ console.log("getFullYear(): "+valor);
 valor = diaHoy.getMonth();
 // january = 1, february = 2, etc
 console.log(valor);
+
+// get hours
+valor = diaHoy.getHours();
+console.log(valor);
