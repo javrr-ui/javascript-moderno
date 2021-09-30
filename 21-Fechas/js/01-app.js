@@ -20,3 +20,7 @@ console.log(valor);
 // get hours
 valor = diaHoy.getHours();
 console.log(valor);
+
+//get minutes
+valor = diaHoy.getMinutes();
+console.log(valor);
