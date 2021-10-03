@@ -22,6 +22,27 @@ UI.prototype.llenarOpciones = () => {
     }
 }
 
+//Muestra alertas en pantalla
+UI.prototype.mostrarMensaje = function (mensaje, tipo) {
+    const div = document.createElement("div");
+
+    if(tipo === "error") {
+        div.classList.add("error");
+    } else {
+        div.classList.add("correcto");
+    }
+    div.classList.add("mensaje");
+    div.textContent = mensaje;
+
+    //Insertar en el HTML
+    const form = document.querySelector("#cotizar-seguro");
+    form.insertBefore(div, document.querySelector("#resultado"));
+
+    setTimeout(() => {
+        div.remove();
+    }, 3000);
+}
+
 //Instanciar UI
 const ui = new UI();
 
@@ -49,8 +70,8 @@ function cotizarSeguro(e) {
     const tipo = document.querySelector("input[name='tipo']:checked").value;
 
     if (marca === "" || year === "" || tipo === "") {
-
+        ui.mostrarMensaje("Todos los campos son obligatorios", "error");
     } else {
-
+        ui.mostrarMensaje("Cotizando", "correcto");
     }
 }
