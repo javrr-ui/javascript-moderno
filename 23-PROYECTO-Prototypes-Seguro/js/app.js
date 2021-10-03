@@ -1,8 +1,44 @@
 //Constructores 
 function Seguro(marca, year, tipo) {
     this.marca = marca;
-    this.seguro = seguro;
+    this.year = year;
     this.tipo = tipo;
+}
+
+//Realiza la cotizacion con los datos
+Seguro.prototype.cotizarSeguro = function () {
+    /*
+        1 = Americano 1.15
+        2 = Asiatico 1.05
+        3 = Europeo 1.35
+    */
+    let cantidad;
+    const base = 2000;
+
+    switch (this.marca) {
+        case "1":
+            cantidad = base * 1.15;
+            break;
+        case "2":
+            cantidad = base * 1.05;
+            break;
+        case "3":
+            cantidad = base * 1.35;
+            break;
+        default:
+            break;
+    }
+
+    //Leer el año
+    const diferencia = new Date().getFullYear() - this.year;
+    cantidad -= ((diferencia * 3) * cantidad) / 100;
+    
+    if(this.tipo === "basico") {
+        cantidad *= 1.30;
+    } else {
+        cantidad *= 1.50;
+    }
+    return cantidad;
 }
 
 function UI() { }
@@ -26,7 +62,7 @@ UI.prototype.llenarOpciones = () => {
 UI.prototype.mostrarMensaje = function (mensaje, tipo) {
     const div = document.createElement("div");
 
-    if(tipo === "error") {
+    if (tipo === "error") {
         div.classList.add("error");
     } else {
         div.classList.add("correcto");
@@ -74,4 +110,8 @@ function cotizarSeguro(e) {
     } else {
         ui.mostrarMensaje("Cotizando", "correcto");
     }
+
+    //Instanciar el seguro
+    const seguro = new Seguro(marca, year, tipo);
+    seguro.cotizarSeguro();
 }
